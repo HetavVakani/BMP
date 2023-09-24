@@ -1,0 +1,32 @@
+﻿@page "/"
+@inject IJSRuntime JSRuntime
+
+@*<iframe id="myVideo" width="560" height="315" src="https://www.youtube.com/embed/KknWV-vlt_M" frameborder="0" allowfullscreen></iframe>*@
+
+@*sdsdsd*@
+<video id="myVideo" style="width: 100%; height: 100vh; object-fit: fill;" controls>
+    <source src="/video/sample.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+@*<video id="myVideo" style="width: 100%; height: 100vh; object-fit: fill;" controls>
+    <source src="https://www.youtube.com/embed/KknWV-vlt_M" type="video/mp4">
+    Your browser does not support the video tag.
+</video>*@
+
+<button id="nextButton" @onclick="ShowButton" style="display: none;">Next</button>
+
+@code {
+    private async Task ShowButton()
+    {
+        // Implementation here
+
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("initVideo");
+        }
+    }
+}
